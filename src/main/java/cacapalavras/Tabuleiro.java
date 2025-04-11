@@ -64,8 +64,5 @@ public class Tabuleiro {
             System.out.printf("%n");
         }
         System.out.printf("%n");
-//        for (int i = 0; i < palavrasEscolhidas.length; i++) {
-//            System.out.println(palavrasEscolhidas[i]);
-//        }
     }
 }
