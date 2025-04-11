@@ -16,16 +16,15 @@ public class Palavras {
         return palavras[rand.nextInt(palavras.length)];
     }
 
-    public String[] retornarPalavras(int quantidade) {
-        if (quantidade > 3) quantidade = 3;
-        String[] palavrasEscolhidas = new String[quantidade];
+    public String[] retornarPalavras() {
+        String[] palavrasEscolhidas = new String[3];
 
-        for (int i = 0; i < quantidade; i++) {
+        for (int i = 0; i < 3; i++) {
             palavrasEscolhidas[i] = palavras[rand.nextInt(palavras.length)];
         }
 
         return palavrasEscolhidas;
-    }char
+    }
 
     public String embaralharPalavra(String palavra) {
         char[] palavraArray = palavra.toCharArray();
