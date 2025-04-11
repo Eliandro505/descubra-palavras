@@ -20,11 +20,18 @@ public class Dicas {
     public String mostrarDica(){
         String dica = new String(palavraRelevada);
 
-        for (int i = 1; i < palavraRelevada.length - 1; i++) {
+        int limite = palavraRelevada.length - 3;
+
+        while(true) {
             int randomIndex = rand.nextInt(palavraRelevada.length);
 
             if (palavraRelevada[randomIndex] == '.') {
+                limite--;
                 palavraRelevada[randomIndex] = palavra.charAt(randomIndex);
+                break;
+            }
+
+            if (limite == 1) {
                 break;
             }
         }
