@@ -21,6 +21,7 @@ public class PalavraEmbaralhada {
             if (entrada.equals("0")) break;
             else if (entrada.equals("dica")) {
                 System.out.printf("--------------- [%s] ---------------\n", dica.mostrarDica());
+                System.out.printf("[------] ");
             }
             else if (entrada.equals(palavraEscolhida.toLowerCase())) {
                 System.out.printf("------------- [ACERTOU] -------------");
