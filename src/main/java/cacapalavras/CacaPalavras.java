@@ -9,13 +9,15 @@ public class CacaPalavras {
         Tabuleiro tabuleiro = new Tabuleiro();
         tabuleiro.definirDificuldade();
         char [][] tabuleiroUm = tabuleiro.criarTabuleiro();
+        String palpite = "";
         boolean[] palpitesCorretos = new boolean[tabuleiro.palavrasEscolhidas.length];
         int acertos = 0;
         tabuleiro.imprimirTabuleiro(tabuleiroUm);
 
         while (acertos < tabuleiro.palavrasEscolhidas.length) {
             System.out.print("------[Digite um palpite: ");
-            String palpite = scan.nextLine().toLowerCase();
+            palpite = scan.nextLine().toLowerCase();
+            if (palpite.equals("0")) break;
 
             boolean acertouPalavra = false;
             for (int i = 0; i < tabuleiro.palavrasEscolhidas.length; i++) {
@@ -32,6 +34,7 @@ public class CacaPalavras {
                 System.out.println("------[❌❌ Errouuu ops! ❌❌]------");
             }
         }
-        System.out.println("------[\uD83C\uDFC6\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6\uD83C\uDFC6]---------");
+        if (palpite.equals("0")) System.out.println("------[\uD83D\uDC80\uD83D\uDC80 Você desistiu! \uD83D\uDC80\uD83D\uDC80]---------");
+        else System.out.println("------[\uD83C\uDFC6\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6\uD83C\uDFC6]---------");
     }
 }
