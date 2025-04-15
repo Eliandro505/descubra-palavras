@@ -14,6 +14,8 @@ public class CacaPalavras {
         int acertos = 0;
         tabuleiro.imprimirTabuleiro(tabuleiroUm);
 
+        System.out.printf("Digite [dica] para receber uma dica. \nDigite [0] para desistir\n");
+
         while (acertos < tabuleiro.palavrasEscolhidas.length) {
             System.out.print("------[Digite um palpite: ");
             palpite = scan.nextLine().toLowerCase();
