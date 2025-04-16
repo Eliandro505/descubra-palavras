@@ -10,6 +10,7 @@ public class CacaPalavras {
         Scanner scan = new Scanner(System.in);
         Tabuleiro tabuleiro = new Tabuleiro();
         tabuleiro.definirDificuldade();
+        String[] respostasCorretas = new String[tabuleiro.palavrasEscolhidas.length];
         char [][] tabuleiroUm = tabuleiro.criarTabuleiro();
         String palpite = "";
         boolean[] palpitesCorretos = new boolean[tabuleiro.palavrasEscolhidas.length];
@@ -51,7 +52,10 @@ public class CacaPalavras {
                     palpitesCorretos[i] = true;
                     acertos++;
                     acertouPalavra = true;
+                    respostasCorretas[i] = tabuleiro.palavrasEscolhidas[i];
                     System.out.println("------[🎉🎉 Acertou uma! 🎉🎉]------");
+                    System.out.println("------[⬇\uFE0F⬇\uFE0F Encontradas! ⬇\uFE0F⬇\uFE0F]------");
+                    mostrarPlacar(respostasCorretas);
                     break;
                 }
             }
@@ -62,5 +66,13 @@ public class CacaPalavras {
         }
         if (palpite.equals("0")) System.out.println("------[\uD83D\uDC80\uD83D\uDC80 Você desistiu! \uD83D\uDC80\uD83D\uDC80]---------");
         else System.out.println("------[\uD83C\uDFC6\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6\uD83C\uDFC6]---------");
+    }
+
+    private static void mostrarPlacar(String[] palavras) {
+        for (int i = 0; i < palavras.length; i++) {
+            if (palavras[i] != null){
+                System.out.printf("--------------- [%s] ---------------\n", palavras[i]);
+            } else System.out.printf("--------------- [?] ---------------\n");
+        }
     }
 }
