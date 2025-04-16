@@ -1,6 +1,7 @@
 package cacapalavras;
 
 import util.Dicas;
+import util.Palavras;
 
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -36,11 +37,11 @@ public class CacaPalavras {
 
             if (palpite.equals("0")) break;
             else if (palpite.equals("dica")) {
-                System.out.printf("--------------- [%s] ---------------\n", dicaPrimeira.mostrarDica());
+                Palavras.printPadronizado(dicaPrimeira.mostrarDica());
                 if(tabuleiro.palavrasEscolhidas.length > 1) {
-                    System.out.printf("--------------- [%s] ---------------\n", dicaSegunda.mostrarDica());
+                    Palavras.printPadronizado(dicaSegunda.mostrarDica());
                     if(tabuleiro.palavrasEscolhidas.length == 3) {
-                        System.out.printf("--------------- [%s] ---------------\n", dicaTerceira.mostrarDica());
+                        Palavras.printPadronizado(dicaTerceira.mostrarDica());
                     }
                 }
                 acertouPalavra = true;
@@ -53,26 +54,26 @@ public class CacaPalavras {
                     acertos++;
                     acertouPalavra = true;
                     respostasCorretas[i] = tabuleiro.palavrasEscolhidas[i];
-                    System.out.println("------[🎉🎉 Acertou uma! 🎉🎉]------");
-                    System.out.println("------[⬇\uFE0F⬇\uFE0F Encontradas! ⬇\uFE0F⬇\uFE0F]------");
+                    Palavras.printPadronizado("🎉 Acertou 🎉");
+                    Palavras.printPadronizado("Palavras Encontradas");
                     mostrarPlacar(respostasCorretas);
                     break;
                 }
             }
 
             if (!acertouPalavra) {
-                System.out.println("------[❌❌ Errouuu ops! ❌❌]------");
+                Palavras.printPadronizado("❌ Palavra Errada! ❌");
             }
         }
-        if (palpite.equals("0")) System.out.println("------[\uD83D\uDC80\uD83D\uDC80 Você desistiu! \uD83D\uDC80\uD83D\uDC80]---------");
-        else System.out.println("------[\uD83C\uDFC6\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6\uD83C\uDFC6]---------");
+        if (palpite.equals("0")) Palavras.printPadronizado("\uD83D\uDC80 Você desistiu! \uD83D\uDC80");
+        else Palavras.printPadronizado("\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6");
     }
 
     private static void mostrarPlacar(String[] palavras) {
         for (int i = 0; i < palavras.length; i++) {
             if (palavras[i] != null){
-                System.out.printf("--------------- [%s] ---------------\n", palavras[i]);
-            } else System.out.printf("--------------- [?] ---------------\n");
+                Palavras.printPadronizado(palavras[i]);
+            } else Palavras.printPadronizado("?");
         }
     }
 }

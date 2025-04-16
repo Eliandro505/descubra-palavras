@@ -36,4 +36,11 @@ public class Palavras {
         }
         return new String(palavraArray);
     }
+
+    public static void printPadronizado(String palavra) {
+        int totalDashes = 42 - palavra.length() - 2;
+        int tracosAtras = totalDashes / 2;
+        int tracosFrente = totalDashes - tracosAtras;
+        System.out.println("-".repeat(tracosAtras) + " [" + palavra + "] " + "-".repeat(tracosFrente));
+    }
 }
