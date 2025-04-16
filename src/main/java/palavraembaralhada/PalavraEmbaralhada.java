@@ -20,11 +20,11 @@ public class PalavraEmbaralhada {
             String entrada = scan.nextLine().toLowerCase();
             if (entrada.equals("0")) break;
             else if (entrada.equals("dica")) {
-                System.out.printf("--------------- [%s] ---------------\n", dica.mostrarDica());
+                Palavras.printPadronizado(dica.mostrarDica());
                 System.out.printf("[------] ");
             }
             else if (entrada.equals(palavraEscolhida.toLowerCase())) {
-                System.out.printf("------------- [ACERTOU] -------------");
+                Palavras.printPadronizado("ACERTOU");
                 break;
             }
             else System.out.printf("[ERRADO] ");
