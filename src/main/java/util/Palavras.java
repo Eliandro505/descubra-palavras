@@ -16,10 +16,10 @@ public class Palavras {
         return palavras[rand.nextInt(palavras.length)];
     }
 
-    public String[] retornarPalavras() {
-        String[] palavrasEscolhidas = new String[3];
+    public String[] retornarPalavras(int quantidade) {
+        String[] palavrasEscolhidas = new String[quantidade];
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < quantidade; i++) {
             palavrasEscolhidas[i] = palavras[rand.nextInt(palavras.length)];
         }
 
