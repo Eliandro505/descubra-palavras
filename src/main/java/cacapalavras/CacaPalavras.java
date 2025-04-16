@@ -1,5 +1,7 @@
 package cacapalavras;
 
+import util.Dicas;
+
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -14,14 +16,36 @@ public class CacaPalavras {
         int acertos = 0;
         tabuleiro.imprimirTabuleiro(tabuleiroUm);
 
-        System.out.printf("Digite [dica] para receber uma dica. \nDigite [0] para desistir\n");
+        System.out.printf("Digite [dica] + [1,2 ou 3] para receber uma dica. \nDigite [0] para desistir\n");
+
+        Dicas dicaPrimeira = new Dicas(tabuleiro.palavrasEscolhidas[0]);
+        Dicas dicaSegunda = null;
+        Dicas dicaTerceira = null;
+        if(tabuleiro.palavrasEscolhidas.length > 1) {
+            dicaSegunda = new Dicas(tabuleiro.palavrasEscolhidas[1]);
+        }
+        if(tabuleiro.palavrasEscolhidas.length == 3) {
+            dicaTerceira = new Dicas(tabuleiro.palavrasEscolhidas[2]);
+        }
 
         while (acertos < tabuleiro.palavrasEscolhidas.length) {
             System.out.print("------[Digite um palpite: ");
             palpite = scan.nextLine().toLowerCase();
-            if (palpite.equals("0")) break;
-
             boolean acertouPalavra = false;
+
+            if (palpite.equals("0")) break;
+            else if (palpite.equals("dica")) {
+                System.out.printf("--------------- [%s] ---------------\n", dicaPrimeira.mostrarDica());
+                if(tabuleiro.palavrasEscolhidas.length > 1) {
+                    System.out.printf("--------------- [%s] ---------------\n", dicaSegunda.mostrarDica());
+                    if(tabuleiro.palavrasEscolhidas.length == 3) {
+                        System.out.printf("--------------- [%s] ---------------\n", dicaTerceira.mostrarDica());
+                    }
+                }
+                acertouPalavra = true;
+            }
+
+
             for (int i = 0; i < tabuleiro.palavrasEscolhidas.length; i++) {
                 if (!palpitesCorretos[i] && tabuleiro.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
                     palpitesCorretos[i] = true;
