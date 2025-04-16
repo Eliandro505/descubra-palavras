@@ -2,6 +2,7 @@ package app;
 
 import cacapalavras.CacaPalavras;
 import palavraembaralhada.PalavraEmbaralhada;
+import util.ModoInfinito;
 import util.Palavras;
 
 import java.util.Scanner;
@@ -18,10 +19,15 @@ public class Main {
             String entrada = scan.nextLine();
             System.out.println();
             if (entrada.equals("1")) {
-                CacaPalavras.main(new String[]{});
+                do {
+                    CacaPalavras.main(new String[]{});
+                } while (ModoInfinito.continuarGame(1));
                 break;
             } else if (entrada.equals("2")) {
-                PalavraEmbaralhada.main(new String[]{});
+                while(true) {
+                    PalavraEmbaralhada.main(new String[]{});
+                    if(!ModoInfinito.continuarGame(2)) break;
+                }
                 break;
             } else {
                 Palavras.printPadronizado("❌❌ Erro! ❌❌");
