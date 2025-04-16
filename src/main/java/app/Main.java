@@ -2,6 +2,7 @@ package app;
 
 import cacapalavras.CacaPalavras;
 import palavraembaralhada.PalavraEmbaralhada;
+import util.Palavras;
 
 import java.util.Scanner;
 
@@ -22,8 +23,10 @@ public class Main {
             } else if (entrada.equals("2")) {
                 PalavraEmbaralhada.main(new String[]{});
                 break;
-            } else System.out.printf("------[❌❌ Erro! ❌❌]------\n" +
-                    "--------[ [1] ou [2] ]--------\n");
+            } else {
+                Palavras.printPadronizado("❌❌ Erro! ❌❌");
+                Palavras.printPadronizado(" [1] ou [2] ");
+            }
         }
     }
 }
