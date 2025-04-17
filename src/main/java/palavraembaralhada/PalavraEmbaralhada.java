@@ -2,11 +2,15 @@ package palavraembaralhada;
 
 import util.Dicas;
 import util.Palavras;
+import util.Pontuacao;
+
 import java.util.Scanner;
 
 public class PalavraEmbaralhada {
     public static void main(String[] args) {
         Palavras palavras = new Palavras();
+        Pontuacao pontos = new Pontuacao();
+        pontos.iniciarPontuacao();
         String palavraEscolhida = palavras.retornarPalavra();
         String palavraEmbaralhada = palavras.embaralharPalavra(palavraEscolhida);
         Dicas dica = new Dicas(palavraEscolhida);
@@ -20,11 +24,13 @@ public class PalavraEmbaralhada {
             String entrada = scan.nextLine().toLowerCase();
             if (entrada.equals("0")) break;
             else if (entrada.equals("dica")) {
+                pontos.removerPontos();
                 Palavras.printPadronizado(dica.mostrarDica());
                 System.out.printf("[------] ");
             }
             else if (entrada.equals(palavraEscolhida.toLowerCase())) {
                 Palavras.printPadronizado("ACERTOU");
+                Palavras.printPadronizado(pontos.retornarPontuacao());
                 break;
             }
             else System.out.printf("[ERRADO] ");

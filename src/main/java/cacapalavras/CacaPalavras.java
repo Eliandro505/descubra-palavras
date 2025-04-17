@@ -2,6 +2,7 @@ package cacapalavras;
 
 import util.Dicas;
 import util.Palavras;
+import util.Pontuacao;
 
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -10,7 +11,8 @@ public class CacaPalavras {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Tabuleiro tabuleiro = new Tabuleiro();
-
+        Pontuacao pontos = new Pontuacao();
+        pontos.iniciarPontuacao();
 
         tabuleiro.definirDificuldade();
         String[] respostasCorretas = new String[tabuleiro.palavrasEscolhidas.length];
@@ -39,6 +41,7 @@ public class CacaPalavras {
 
             if (palpite.equals("0")) break;
             else if (palpite.equals("dica")) {
+                pontos.removerPontos();
                 Palavras.printPadronizado(dicaPrimeira.mostrarDica());
                 if (tabuleiro.palavrasEscolhidas.length > 1) {
                     Palavras.printPadronizado(dicaSegunda.mostrarDica());
@@ -68,7 +71,10 @@ public class CacaPalavras {
             }
         }
         if (palpite.equals("0")) Palavras.printPadronizado("\uD83D\uDC80 Você desistiu! \uD83D\uDC80");
-        else Palavras.printPadronizado("\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6");
+        else {
+            Palavras.printPadronizado(pontos.retornarPontuacao());
+            Palavras.printPadronizado("\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6");
+        }
     }
 
     private static void mostrarPlacar(String[] palavras) {
