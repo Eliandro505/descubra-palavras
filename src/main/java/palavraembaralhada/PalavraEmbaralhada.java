@@ -7,10 +7,9 @@ import util.Pontuacao;
 import java.util.Scanner;
 
 public class PalavraEmbaralhada {
-    public static void main(String[] args) {
+    public void run() {
         Palavras palavras = new Palavras();
         Pontuacao pontos = new Pontuacao();
-        pontos.iniciarPontuacao();
         String palavraEscolhida = palavras.retornarPalavra();
         String palavraEmbaralhada = palavras.embaralharPalavra(palavraEscolhida);
         Dicas dica = new Dicas(palavraEscolhida);

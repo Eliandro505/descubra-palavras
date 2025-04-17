@@ -20,14 +20,13 @@ public class Main {
             System.out.println();
             if (entrada.equals("1")) {
                 do {
-                    CacaPalavras.main(new String[]{});
+                    new CacaPalavras().run();
                 } while (ModoInfinito.continuarGame(1));
                 break;
             } else if (entrada.equals("2")) {
-                while(true) {
-                    PalavraEmbaralhada.main(new String[]{});
-                    if(!ModoInfinito.continuarGame(2)) break;
-                }
+                do {
+                    new PalavraEmbaralhada().run();
+                } while (ModoInfinito.continuarGame(2));
                 break;
             } else {
                 Palavras.printPadronizado("❌❌ Erro! ❌❌");

@@ -8,11 +8,10 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class CacaPalavras {
-    public static void main(String[] args) {
+    public void run() {
         Scanner scan = new Scanner(System.in);
         Tabuleiro tabuleiro = new Tabuleiro();
         Pontuacao pontos = new Pontuacao();
-        pontos.iniciarPontuacao();
 
         tabuleiro.definirDificuldade();
         String[] respostasCorretas = new String[tabuleiro.palavrasEscolhidas.length];
@@ -77,7 +76,7 @@ public class CacaPalavras {
         }
     }
 
-    private static void mostrarPlacar(String[] palavras) {
+    private void mostrarPlacar(String[] palavras) {
         for (int i = 0; i < palavras.length; i++) {
             if (palavras[i] != null){
                 Palavras.printPadronizado(palavras[i]);

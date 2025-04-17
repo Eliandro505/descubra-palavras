@@ -5,7 +5,11 @@ public class Pontuacao {
     long tempoInicial;
     long tempoFinal;
 
-    public void iniciarPontuacao(){
+    public Pontuacao() {
+        iniciarPontuacao();
+    }
+
+    private void iniciarPontuacao(){
         tempoInicial = System.currentTimeMillis();
     }
 
