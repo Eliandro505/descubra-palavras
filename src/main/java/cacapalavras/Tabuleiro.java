@@ -6,7 +6,7 @@ import util.Palavras;
 
 public class Tabuleiro {
     Integer tamanho;
-    String[] palavrasEscolhidas;
+    Palavras palavras;
     Random rand = new Random();
     Scanner scan = new Scanner(System.in);
 
@@ -17,17 +17,16 @@ public class Tabuleiro {
                 "[1] Fácil (15x15 - 1 palavra) \n[2] Médio (20x20 - 2 palavras) \n[3] Difícil (25x25 - 3 palavras)\n" +
                 "////////// ");
         int valor = scan.nextInt();
+        if (valor >= 1 && valor  <= 3) palavras = new Palavras(valor);
+        else palavras = new Palavras(1);
         if (valor == 2) {
             tamanho = 20;
-            palavrasEscolhidas = new Palavras().retornarPalavras(valor);
         }
         else if (valor == 3) {
             tamanho = 25;
-            palavrasEscolhidas = new Palavras().retornarPalavras(valor);
         }
         else {
             tamanho = 15;
-            palavrasEscolhidas = new Palavras().retornarPalavras(1);
         }
     }
 
@@ -38,7 +37,7 @@ public class Tabuleiro {
                 tabuleiro[x][y] = (char) ('a' + rand.nextInt(25));
             }
         }
-        inserirPalavras(tabuleiro, palavrasEscolhidas);
+        inserirPalavras(tabuleiro, palavras.palavrasEscolhidas);
         return tabuleiro;
     }
 

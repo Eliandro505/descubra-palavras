@@ -3,6 +3,10 @@ package util;
 import java.util.Random;
 
 public class Palavras {
+    Random rand = new Random();
+    public String palavraEscolhida;
+    public String palavraEmbaralhada;
+    public String[] palavrasEscolhidas;
     String[] palavras = {"Cachorro", "Amigo", "Rápido", "Escola", "Mundo",
             "Futuro", "Lágrima", "Verão", "Coração", "Árvore",
             "Livro", "Janela", "Mesa", "Estrada", "Sol",
@@ -10,23 +14,23 @@ public class Palavras {
             "Paz", "Luz", "Sombra", "Caminho", "Estrela",
             "Vento", "Gato", "Lutar", "Reino", "Céu", "Fruta"};
 
-    Random rand = new Random();
-
-    public String retornarPalavra() {
-        return palavras[rand.nextInt(palavras.length)];
+    public Palavras(int quantidadePalavras) {
+        palavrasEscolhidas = retornarPalavras(quantidadePalavras);
+        palavraEscolhida = palavrasEscolhidas[0];
+        palavraEmbaralhada = embaralharPalavra(palavraEscolhida);
     }
 
-    public String[] retornarPalavras(int quantidade) {
-        String[] palavrasEscolhidas = new String[quantidade];
+    private String[] retornarPalavras(int quantidadePalavras) {
+        String[] palavrasEscolhidas = new String[quantidadePalavras];
 
-        for (int i = 0; i < quantidade; i++) {
+        for (int i = 0; i < quantidadePalavras; i++) {
             palavrasEscolhidas[i] = palavras[rand.nextInt(palavras.length)];
         }
 
         return palavrasEscolhidas;
     }
 
-    public String embaralharPalavra(String palavra) {
+    private String embaralharPalavra(String palavra) {
         char[] palavraArray = palavra.toCharArray();
         for (int i = 0; i < palavraArray.length; i++) {
             int indexAleatorio = rand.nextInt(palavraArray.length);

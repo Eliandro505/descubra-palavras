@@ -8,18 +8,16 @@ import java.util.Scanner;
 
 public class PalavraEmbaralhada {
     public void run() {
-        Palavras palavras = new Palavras();
+        Palavras palavra = new Palavras(1);
         Pontuacao pontos = new Pontuacao();
-        String palavraEscolhida = palavras.retornarPalavra();
-        String palavraEmbaralhada = palavras.embaralharPalavra(palavraEscolhida);
-        Dicas dica = new Dicas(palavraEscolhida);
+        Dicas dica = new Dicas(palavra.palavraEscolhida);
 
         System.out.printf("Digite [dica] para receber uma dica. \nDigite [0] para desistir\n");
 
         Scanner scan = new Scanner(System.in);
         System.out.printf("[------] ");
         while (true) {
-            System.out.printf("Adivinhe a seguinte palavra: %s // ", palavraEmbaralhada.toLowerCase());
+            System.out.printf("Adivinhe a seguinte palavra: %s // ", palavra.palavraEmbaralhada.toLowerCase());
             String entrada = scan.nextLine().toLowerCase();
             if (entrada.equals("0")) break;
             else if (entrada.equals("dica")) {
@@ -27,7 +25,7 @@ public class PalavraEmbaralhada {
                 Palavras.printPadronizado(dica.mostrarDica());
                 System.out.printf("[------] ");
             }
-            else if (entrada.equals(palavraEscolhida.toLowerCase())) {
+            else if (entrada.equals(palavra.palavraEscolhida.toLowerCase())) {
                 Palavras.printPadronizado("ACERTOU");
                 Palavras.printPadronizado(pontos.retornarPontuacao());
                 break;

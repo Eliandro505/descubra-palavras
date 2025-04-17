@@ -14,26 +14,26 @@ public class CacaPalavras {
         Pontuacao pontos = new Pontuacao();
 
         tabuleiro.definirDificuldade();
-        String[] respostasCorretas = new String[tabuleiro.palavrasEscolhidas.length];
+        String[] respostasCorretas = new String[tabuleiro.palavras.palavrasEscolhidas.length];
         char[][] tabuleiroUm = tabuleiro.criarTabuleiro();
         String palpite = "";
-        boolean[] palpitesCorretos = new boolean[tabuleiro.palavrasEscolhidas.length];
+        boolean[] palpitesCorretos = new boolean[tabuleiro.palavras.palavrasEscolhidas.length];
         int acertos = 0;
         tabuleiro.imprimirTabuleiro(tabuleiroUm);
 
         System.out.printf("Digite [dica] + [1, 2 ou 3] para receber uma dica. \nDigite [0] para desistir\n");
 
-        Dicas dicaPrimeira = new Dicas(tabuleiro.palavrasEscolhidas[0]);
+        Dicas dicaPrimeira = new Dicas(tabuleiro.palavras.palavrasEscolhidas[0]);
         Dicas dicaSegunda = null;
         Dicas dicaTerceira = null;
-        if (tabuleiro.palavrasEscolhidas.length > 1) {
-            dicaSegunda = new Dicas(tabuleiro.palavrasEscolhidas[1]);
+        if (tabuleiro.palavras.palavrasEscolhidas.length > 1) {
+            dicaSegunda = new Dicas(tabuleiro.palavras.palavrasEscolhidas[1]);
         }
-        if (tabuleiro.palavrasEscolhidas.length == 3) {
-            dicaTerceira = new Dicas(tabuleiro.palavrasEscolhidas[2]);
+        if (tabuleiro.palavras.palavrasEscolhidas.length == 3) {
+            dicaTerceira = new Dicas(tabuleiro.palavras.palavrasEscolhidas[2]);
         }
 
-        while (acertos < tabuleiro.palavrasEscolhidas.length) {
+        while (acertos < tabuleiro.palavras.palavrasEscolhidas.length) {
             System.out.print("------[Digite um palpite: ");
             palpite = scan.nextLine().toLowerCase();
             boolean acertouPalavra = false;
@@ -42,9 +42,9 @@ public class CacaPalavras {
             else if (palpite.equals("dica")) {
                 pontos.removerPontos();
                 Palavras.printPadronizado(dicaPrimeira.mostrarDica());
-                if (tabuleiro.palavrasEscolhidas.length > 1) {
+                if (tabuleiro.palavras.palavrasEscolhidas.length > 1) {
                     Palavras.printPadronizado(dicaSegunda.mostrarDica());
-                    if (tabuleiro.palavrasEscolhidas.length == 3) {
+                    if (tabuleiro.palavras.palavrasEscolhidas.length == 3) {
                         Palavras.printPadronizado(dicaTerceira.mostrarDica());
                     }
                 }
@@ -52,12 +52,12 @@ public class CacaPalavras {
             }
 
 
-            for (int i = 0; i < tabuleiro.palavrasEscolhidas.length; i++) {
-                if (!palpitesCorretos[i] && tabuleiro.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
+            for (int i = 0; i < tabuleiro.palavras.palavrasEscolhidas.length; i++) {
+                if (!palpitesCorretos[i] && tabuleiro.palavras.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
                     palpitesCorretos[i] = true;
                     acertos++;
                     acertouPalavra = true;
-                    respostasCorretas[i] = tabuleiro.palavrasEscolhidas[i];
+                    respostasCorretas[i] = tabuleiro.palavras.palavrasEscolhidas[i];
                     Palavras.printPadronizado("🎉 Acertou 🎉");
                     Palavras.printPadronizado("Palavras Encontradas");
                     mostrarPlacar(respostasCorretas);
