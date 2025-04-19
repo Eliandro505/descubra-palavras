@@ -7,7 +7,7 @@ public class Palavras {
     public String palavraEscolhida;
     public String palavraEmbaralhada;
     public String[] palavrasEscolhidas;
-    String[] palavras = {"Cachorro", "Amigo", "Rápido", "Escola", "Mundo",
+    private String[] palavras = {"Cachorro", "Amigo", "Rápido", "Escola", "Mundo",
             "Futuro", "Lágrima", "Verão", "Coração", "Árvore",
             "Livro", "Janela", "Mesa", "Estrada", "Sol",
             "Mar", "Cidade", "Sorriso", "Feliz", "Amor",
@@ -15,9 +15,9 @@ public class Palavras {
             "Vento", "Gato", "Lutar", "Reino", "Céu", "Fruta"};
 
     public Palavras(int quantidadePalavras) {
-        palavrasEscolhidas = retornarPalavras(quantidadePalavras);
-        palavraEscolhida = palavrasEscolhidas[0];
-        palavraEmbaralhada = embaralharPalavra(palavraEscolhida);
+        this.palavrasEscolhidas = retornarPalavras(quantidadePalavras);
+        this.palavraEscolhida = palavrasEscolhidas[0];
+        this.palavraEmbaralhada = embaralharPalavra(palavraEscolhida);
     }
 
     private String[] retornarPalavras(int quantidadePalavras) {
@@ -42,9 +42,9 @@ public class Palavras {
     }
 
     public static void printPadronizado(String palavra) {
-        int totalDashes = 42 - palavra.length() - 2;
-        int tracosAtras = totalDashes / 2;
-        int tracosFrente = totalDashes - tracosAtras;
+        int tracosTotais = 42 - palavra.length() - 2;
+        int tracosAtras = tracosTotais / 2;
+        int tracosFrente = tracosTotais - tracosAtras;
         System.out.println("-".repeat(tracosAtras) + " [" + palavra + "] " + "-".repeat(tracosFrente));
     }
 }
