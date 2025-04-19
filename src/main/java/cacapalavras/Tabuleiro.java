@@ -16,16 +16,20 @@ public class Tabuleiro {
         System.out.printf("[Qualquer valor diferente resultará em um tabuleiro FÁCIL]\n" +
                 "[1] Fácil (15x15 - 1 palavra) \n[2] Médio (20x20 - 2 palavras) \n[3] Difícil (25x25 - 3 palavras)\n" +
                 "////////// ");
-        int valor = scan.nextInt();
-        if (valor >= 1 && valor  <= 3) palavras = new Palavras(valor);
-        else palavras = new Palavras(1);
-        if (valor == 2) {
-            tamanho = 20;
-        }
-        else if (valor == 3) {
-            tamanho = 25;
-        }
-        else {
+        String valor = scan.nextLine();
+        try {
+            int intValor = Integer.parseInt(valor);
+            if (intValor >= 1 && intValor  <= 3) {
+                palavras = new Palavras(intValor);
+                if (intValor == 2) tamanho = 20;
+                else if (intValor == 3) tamanho = 25;
+                else tamanho = 15;
+            } else {
+                palavras = new Palavras(1);
+                tamanho = 15;
+            }
+        } catch (NumberFormatException e) {
+            palavras = new Palavras(1);
             tamanho = 15;
         }
     }
