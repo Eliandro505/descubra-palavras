@@ -5,7 +5,6 @@ import util.Palavras;
 import util.Pontuacao;
 
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class CacaPalavras {
     public void run() {
@@ -23,15 +22,7 @@ public class CacaPalavras {
 
         System.out.printf("Digite [dica] + [1, 2 ou 3] para receber uma dica. \nDigite [0] para desistir\n");
 
-        Dicas dicaPrimeira = new Dicas(tabuleiro.palavras.palavrasEscolhidas[0]);
-        Dicas dicaSegunda = null;
-        Dicas dicaTerceira = null;
-        if (tabuleiro.palavras.palavrasEscolhidas.length > 1) {
-            dicaSegunda = new Dicas(tabuleiro.palavras.palavrasEscolhidas[1]);
-        }
-        if (tabuleiro.palavras.palavrasEscolhidas.length == 3) {
-            dicaTerceira = new Dicas(tabuleiro.palavras.palavrasEscolhidas[2]);
-        }
+        Dicas dicas = new Dicas(tabuleiro.palavras.palavrasEscolhidas);
 
         while (acertos < tabuleiro.palavras.palavrasEscolhidas.length) {
             System.out.print("------[Digite um palpite: ");
@@ -41,13 +32,7 @@ public class CacaPalavras {
             if (palpite.equals("0")) break;
             else if (palpite.equals("dica")) {
                 pontos.removerPontos();
-                Palavras.printPadronizado(dicaPrimeira.mostrarDica());
-                if (tabuleiro.palavras.palavrasEscolhidas.length > 1) {
-                    Palavras.printPadronizado(dicaSegunda.mostrarDica());
-                    if (tabuleiro.palavras.palavrasEscolhidas.length == 3) {
-                        Palavras.printPadronizado(dicaTerceira.mostrarDica());
-                    }
-                }
+                dicas.mostrarDica();
                 acertouPalavra = true;
             }
 

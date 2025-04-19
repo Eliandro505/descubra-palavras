@@ -22,7 +22,7 @@ public class PalavraEmbaralhada {
             if (entrada.equals("0")) break;
             else if (entrada.equals("dica")) {
                 pontos.removerPontos();
-                Palavras.printPadronizado(dica.mostrarDica());
+                dica.mostrarDica();
                 System.out.printf("[------] ");
             }
             else if (entrada.equals(palavra.palavraEscolhida.toLowerCase())) {
@@ -32,6 +32,5 @@ public class PalavraEmbaralhada {
             }
             else System.out.printf("[ERRADO] ");
         }
-
     }
 }
