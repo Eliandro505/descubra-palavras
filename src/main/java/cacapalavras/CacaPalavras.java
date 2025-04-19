@@ -60,21 +60,20 @@ public class CacaPalavras {
         if (palpite.equals("dica")) {
             pontos.removerPontos();
             dicas.mostrarDica();
-            return;
-        }
-
-        for (int i = 0; i < tabuleiro.palavras.palavrasEscolhidas.length; i++) {
-            if (!palpitesCorretos[i] && tabuleiro.palavras.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
-                palpitesCorretos[i] = true;
-                acertos++;
-                respostasCorretas[i] = tabuleiro.palavras.palavrasEscolhidas[i];
-                Palavras.printPadronizado("🎉 Acertou 🎉");
-                Palavras.printPadronizado("Palavras Encontradas");
-                mostrarPlacar(respostasCorretas);
-                return;
+        } else {
+            for (int i = 0; i < tabuleiro.palavras.palavrasEscolhidas.length; i++) {
+                if (!palpitesCorretos[i] && tabuleiro.palavras.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
+                    palpitesCorretos[i] = true;
+                    acertos++;
+                    respostasCorretas[i] = tabuleiro.palavras.palavrasEscolhidas[i];
+                    Palavras.printPadronizado("🎉 Acertou 🎉");
+                    Palavras.printPadronizado("Palavras Encontradas");
+                    mostrarPlacar(respostasCorretas);
+                    return;
+                }
             }
+            Palavras.printPadronizado("❌ Palavra Errada! ❌");
         }
-        Palavras.printPadronizado("❌ Palavra Errada! ❌");
     }
 
     private void exibirResultadoFinal(String palpite) {
