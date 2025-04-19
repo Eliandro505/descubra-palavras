@@ -9,13 +9,7 @@ public class Dicas {
     private Random rand = new Random();
 
     public Dicas(String palavra) {
-        palavraRelevada = palavra.toCharArray();
-
-        for (int i = 1; i < palavraRelevada.length - 1; i++) {
-            palavraRelevada[i] = '.';
-        }
-        this.palavras = new String[] {palavra};
-        palavrasReveladas = new char[][] {palavraRelevada};
+        this(new String[] {palavra});
     }
 
     public Dicas(String[] palavras) {
