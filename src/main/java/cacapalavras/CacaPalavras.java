@@ -7,58 +7,40 @@ import util.Pontuacao;
 import java.util.Scanner;
 
 public class CacaPalavras {
+    private Scanner scan;
+    private Tabuleiro tabuleiro;
+    private Dicas dicas;
+    private Pontuacao pontos;
+    private String[] respostasCorretas;
+    private char[][] tabuleiroUm;
+    private boolean[] palpitesCorretos;
+    private int acertos = 0;
+    private String palpite = "";
+
     public void run() {
-        Scanner scan = new Scanner(System.in);
-        Tabuleiro tabuleiro = new Tabuleiro();
-        Pontuacao pontos = new Pontuacao();
-
-        tabuleiro.definirDificuldade();
-        String[] respostasCorretas = new String[tabuleiro.palavras.palavrasEscolhidas.length];
-        char[][] tabuleiroUm = tabuleiro.criarTabuleiro();
-        String palpite = "";
-        boolean[] palpitesCorretos = new boolean[tabuleiro.palavras.palavrasEscolhidas.length];
-        int acertos = 0;
-        tabuleiro.imprimirTabuleiro(tabuleiroUm);
-
-        System.out.printf("Digite [dica] + [1, 2 ou 3] para receber uma dica. \nDigite [0] para desistir\n");
-
-        Dicas dicas = new Dicas(tabuleiro.palavras.palavrasEscolhidas);
+        iniciarJogo();
 
         while (acertos < tabuleiro.palavras.palavrasEscolhidas.length) {
-            System.out.print("------[Digite um palpite: ");
-            palpite = scan.nextLine().toLowerCase();
-            boolean acertouPalavra = false;
-
+            palpite = lerPalpite();
             if (palpite.equals("0")) break;
-            else if (palpite.equals("dica")) {
-                pontos.removerPontos();
-                dicas.mostrarDica();
-                acertouPalavra = true;
-            }
-
-
-            for (int i = 0; i < tabuleiro.palavras.palavrasEscolhidas.length; i++) {
-                if (!palpitesCorretos[i] && tabuleiro.palavras.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
-                    palpitesCorretos[i] = true;
-                    acertos++;
-                    acertouPalavra = true;
-                    respostasCorretas[i] = tabuleiro.palavras.palavrasEscolhidas[i];
-                    Palavras.printPadronizado("🎉 Acertou 🎉");
-                    Palavras.printPadronizado("Palavras Encontradas");
-                    mostrarPlacar(respostasCorretas);
-                    break;
-                }
-            }
-
-            if (!acertouPalavra) {
-                Palavras.printPadronizado("❌ Palavra Errada! ❌");
-            }
+            processarPalpite(palpite);
         }
-        if (palpite.equals("0")) Palavras.printPadronizado("\uD83D\uDC80 Você desistiu! \uD83D\uDC80");
-        else {
-            Palavras.printPadronizado(pontos.retornarPontuacao());
-            Palavras.printPadronizado("\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6");
-        }
+
+        exibirResultadoFinal(palpite);
+    }
+
+    private void iniciarJogo() {
+        scan = new Scanner(System.in);
+        tabuleiro = new Tabuleiro();
+        pontos = new Pontuacao();
+        tabuleiro.definirDificuldade();
+        respostasCorretas = new String[tabuleiro.palavras.palavrasEscolhidas.length];
+        tabuleiroUm = tabuleiro.criarTabuleiro();
+        palpitesCorretos = new boolean[tabuleiro.palavras.palavrasEscolhidas.length];
+        tabuleiro.imprimirTabuleiro(tabuleiroUm);
+        Palavras.printPadronizado("Digite [dica] para receber dicas");
+        Palavras.printPadronizado("Digite [0] para desistir");
+        dicas = new Dicas(tabuleiro.palavras.palavrasEscolhidas);
     }
 
     private void mostrarPlacar(String[] palavras) {
@@ -66,6 +48,40 @@ public class CacaPalavras {
             if (palavras[i] != null){
                 Palavras.printPadronizado(palavras[i]);
             } else Palavras.printPadronizado("?");
+        }
+    }
+
+    private String lerPalpite() {
+        System.out.print("------[Digite um palpite: ");
+        return scan.nextLine().toLowerCase();
+    }
+
+    private void  processarPalpite(String palpite) {
+        if (palpite.equals("dica")) {
+            pontos.removerPontos();
+            dicas.mostrarDica();
+            return;
+        }
+
+        for (int i = 0; i < tabuleiro.palavras.palavrasEscolhidas.length; i++) {
+            if (!palpitesCorretos[i] && tabuleiro.palavras.palavrasEscolhidas[i].toLowerCase().equals(palpite)) {
+                palpitesCorretos[i] = true;
+                acertos++;
+                respostasCorretas[i] = tabuleiro.palavras.palavrasEscolhidas[i];
+                Palavras.printPadronizado("🎉 Acertou 🎉");
+                Palavras.printPadronizado("Palavras Encontradas");
+                mostrarPlacar(respostasCorretas);
+                return;
+            }
+        }
+        Palavras.printPadronizado("❌ Palavra Errada! ❌");
+    }
+
+    private void exibirResultadoFinal(String palpite) {
+        if (palpite.equals("0")) Palavras.printPadronizado("\uD83D\uDC80 Você desistiu! \uD83D\uDC80");
+        else {
+            Palavras.printPadronizado(pontos.retornarPontuacao());
+            Palavras.printPadronizado("\uD83C\uDFC6 Parabéns XDD \uD83C\uDFC6");
         }
     }
 }

@@ -3,7 +3,6 @@ package util;
 import java.util.Random;
 
 public class Dicas {
-    private String palavra;
     private String[] palavras;
     private char[] palavraRelevada;
     private char[][] palavrasReveladas;
