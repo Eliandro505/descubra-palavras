@@ -1,9 +1,9 @@
 package util;
 
 public class Pontuacao {
-    int pontos = 1000;
-    long tempoInicial;
-    long tempoFinal;
+    private int pontos = 1000;
+    private long tempoInicial;
+    private long tempoFinal;
 
     public Pontuacao() {
         iniciarPontuacao();
@@ -17,7 +17,7 @@ public class Pontuacao {
         this.pontos -= 250;
     }
 
-    public String retornarPontuacao() {
+    public String getPontos() {
         tempoFinal = System.currentTimeMillis();
         pontos -= (int) (tempoFinal-tempoInicial) / 1000;
         if (pontos < 0) pontos = 0;

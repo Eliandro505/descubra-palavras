@@ -3,10 +3,10 @@ package util;
 import java.util.Random;
 
 public class Palavras {
-    Random rand = new Random();
-    public String palavraEscolhida;
-    public String palavraEmbaralhada;
-    public String[] palavrasEscolhidas;
+    private Random rand = new Random();
+    private String palavraEscolhida;
+    private String palavraEmbaralhada;
+    private String[] palavrasEscolhidas;
     private String[] palavras = {"Cachorro", "Amigo", "Rápido", "Escola", "Mundo",
             "Futuro", "Lágrima", "Verão", "Coração", "Árvore",
             "Livro", "Janela", "Mesa", "Estrada", "Sol",
@@ -47,4 +47,15 @@ public class Palavras {
         int tracosFrente = tracosTotais - tracosAtras;
         System.out.println("-".repeat(tracosAtras) + " [" + palavra + "] " + "-".repeat(tracosFrente));
     }
+
+    public static void instrucoesPadrao() {
+        printPadronizado("Digite [dica] para receber dicas");
+        printPadronizado("Digite [0] para desistir");
+    }
+
+    public String getPalavraEscolhida() { return palavraEscolhida; }
+
+    public String getPalavraEmbaralhada() { return palavraEmbaralhada; }
+
+    public String[] getPalavrasEscolhidas() { return palavrasEscolhidas; }
 }

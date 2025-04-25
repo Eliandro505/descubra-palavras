@@ -5,9 +5,9 @@ import java.util.Scanner;
 import util.Palavras;
 
 public class Tabuleiro {
-    Integer tamanho;
-    Palavras palavras;
-    Random rand = new Random();
+    private Integer tamanho;
+    private Palavras palavras;
+    private Random rand = new Random();
 
     public void definirDificuldade() {
         System.out.println("Escolha a dificuldade do jogo");
@@ -34,7 +34,7 @@ public class Tabuleiro {
 
     public char[][] criarTabuleiro() {
         char[][] tabuleiro = new char[tamanho][tamanho];
-        inserirPalavras(tabuleiro, palavras.palavrasEscolhidas);
+        inserirPalavras(tabuleiro, palavras.getPalavrasEscolhidas());
         for (int x = 0; x < tamanho; x++){
             for (int y = 0; y < tamanho; y++){
                 if (tabuleiro[x][y] == '\0') {
@@ -118,4 +118,6 @@ public class Tabuleiro {
         }
         System.out.printf("%n");
     }
+
+    public String[] getPalavras(){ return palavras.getPalavrasEscolhidas(); }
 }

@@ -27,14 +27,14 @@ public class PalavraEmbaralhada {
     private void iniciarJogo() {
         palavra = new Palavras(1);
         pontos = new Pontuacao();
-        dica = new Dicas(palavra.palavraEscolhida);
+        dica = new Dicas(palavra.getPalavraEscolhida());
         scan = new Scanner(System.in);
-        System.out.printf("Digite [dica] para receber uma dica. \nDigite [0] para desistir\n");
+        Palavras.instrucoesPadrao();
         System.out.printf("[------] ");
     }
 
     private String lerEntrada() {
-        System.out.printf("Adivinhe a seguinte palavra: %s // ", palavra.palavraEmbaralhada.toLowerCase());
+        System.out.printf("Adivinhe a seguinte palavra: %s // ", palavra.getPalavraEmbaralhada().toLowerCase());
         return scan.nextLine().toLowerCase();
     }
 
@@ -43,9 +43,9 @@ public class PalavraEmbaralhada {
             pontos.removerPontos();
             dica.mostrarDica();
             System.out.printf("[------] ");
-        } else if (palpite.equals(palavra.palavraEscolhida.toLowerCase())) {
+        } else if (palpite.equals(palavra.getPalavraEscolhida().toLowerCase())) {
             Palavras.printPadronizado("ACERTOU");
-            Palavras.printPadronizado(pontos.retornarPontuacao());
+            Palavras.printPadronizado(pontos.getPontos());
             return true;
         } else System.out.printf("[ERRADO] ");
         return false;
