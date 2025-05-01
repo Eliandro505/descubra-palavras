@@ -47,8 +47,8 @@ public class Tabuleiro {
         for (int x = 0; x < tamanho; x++){
             for (int y = 0; y < tamanho; y++){
                 if (tabuleiro[x][y] == '\0') {
-//                    tabuleiro[x][y] = (char) ('a' + rand.nextInt(25));
-                    tabuleiro[x][y] = '.';
+                    tabuleiro[x][y] = (char) ('a' + rand.nextInt(25));
+//                    tabuleiro[x][y] = '.'; // Linha para teste
                 }
             }
         }
@@ -129,5 +129,5 @@ public class Tabuleiro {
         System.out.printf("%n");
     }
 
-    public String[] getPalavras(){ return palavras.getPalavrasEscolhidas(); }
+    public Palavras getPalavras() { return palavras; }
 }

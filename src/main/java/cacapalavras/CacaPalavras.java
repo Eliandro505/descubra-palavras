@@ -20,7 +20,7 @@ public class CacaPalavras {
     public void run() {
         iniciarJogo();
 
-        while (acertos < tabuleiro.getPalavras().length) {
+        while (acertos < tabuleiro.getPalavras().getPalavrasEscolhidas().length) {
             palpite = lerPalpite();
             if (palpite.equals("0")) break;
             processarPalpite(palpite);
@@ -34,12 +34,12 @@ public class CacaPalavras {
         tabuleiro = new Tabuleiro();
         pontos = new Pontuacao();
         tabuleiro.definirDificuldade();
-        respostasCorretas = new String[tabuleiro.getPalavras().length];
+        respostasCorretas = new String[tabuleiro.getPalavras().getPalavrasEscolhidas().length];
         tabuleiroUm = tabuleiro.criarTabuleiro();
-        palpitesCorretos = new boolean[tabuleiro.getPalavras().length];
+        palpitesCorretos = new boolean[tabuleiro.getPalavras().getPalavrasEscolhidas().length];
         tabuleiro.imprimirTabuleiro(tabuleiroUm);
         Palavras.instrucoesPadrao();
-        dicas = new Dicas(tabuleiro.getPalavras());
+        dicas = new Dicas(tabuleiro.getPalavras().getPalavrasEscolhidas());
     }
 
     private void mostrarPlacar(String[] palavras) {
@@ -60,11 +60,11 @@ public class CacaPalavras {
             pontos.removerPontos();
             dicas.mostrarDica();
         } else {
-            for (int i = 0; i < tabuleiro.getPalavras().length; i++) {
-                if (!palpitesCorretos[i] && tabuleiro.getPalavras()[i].toLowerCase().equals(palpite)) {
+            for (int i = 0; i < tabuleiro.getPalavras().getPalavrasEscolhidas().length; i++) {
+                if (!palpitesCorretos[i] && tabuleiro.getPalavras().getPalavrasEscolhidas()[i].toLowerCase().equals(palpite)) {
                     palpitesCorretos[i] = true;
                     acertos++;
-                    respostasCorretas[i] = tabuleiro.getPalavras()[i];
+                    respostasCorretas[i] = tabuleiro.getPalavras().getPalavrasEscolhidas()[i];
                     Palavras.printPadronizado("🎉 Acertou 🎉");
                     Palavras.printPadronizado("Palavras Encontradas");
                     mostrarPlacar(respostasCorretas);
