@@ -7,6 +7,7 @@ import util.Palavras;
 public class Tabuleiro {
     private Integer tamanho;
     private Palavras palavras;
+    private Integer dificuldade;
     private Random rand = new Random();
 
     public void definirDificuldade() {
@@ -14,19 +15,27 @@ public class Tabuleiro {
         System.out.print("[Qualquer valor diferente resultará em um tabuleiro FÁCIL]\n" +
                 "[1] Fácil (15x15 - 2 palavras) \n[2] Médio (20x20 - 4 palavras) \n[3] Difícil (25x25 - 6 palavras)\n" +
                 "////////// ");
-        String valor = new Scanner(System.in).nextLine();
+        String entrada = new Scanner(System.in).nextLine();
         try {
-            int intValor = Integer.parseInt(valor);
-            if (intValor >= 1 && intValor  <= 3) {
-                palavras = new Palavras(intValor*2);
-                if (intValor == 2) tamanho = 20;
-                else if (intValor == 3) tamanho = 25;
-                else tamanho = 15;
+            int valor = Integer.parseInt(entrada);
+            if (valor >= 1 && valor  <= 3) {
+                dificuldade = valor;
             } else {
-                palavras = new Palavras(2);
-                tamanho = 15;
+                dificuldade = 1;
             }
         } catch (NumberFormatException e) {
+            dificuldade = 1;
+        }
+        configurarJogo();
+    }
+
+    private void configurarJogo() {
+        if (dificuldade >= 1 && dificuldade  <= 3) {
+            palavras = new Palavras(dificuldade*2);
+            if (dificuldade == 2) tamanho = 20;
+            else if (dificuldade == 3) tamanho = 25;
+            else tamanho = 15;
+        } else {
             palavras = new Palavras(2);
             tamanho = 15;
         }
@@ -38,7 +47,8 @@ public class Tabuleiro {
         for (int x = 0; x < tamanho; x++){
             for (int y = 0; y < tamanho; y++){
                 if (tabuleiro[x][y] == '\0') {
-                    tabuleiro[x][y] = (char) ('a' + rand.nextInt(25));
+//                    tabuleiro[x][y] = (char) ('a' + rand.nextInt(25));
+                    tabuleiro[x][y] = '.';
                 }
             }
         }
